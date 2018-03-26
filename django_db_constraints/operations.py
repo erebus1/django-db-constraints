@@ -11,7 +11,7 @@ class AlterConstraints(ModelOptionOperation):
 
     def __init__(self, name, db_constraints):
         self.db_constraints = db_constraints
-        super().__init__(name)
+        super(AlterConstraints, self).__init__(name)
 
     def state_forwards(self, app_label, state):
         model_state = state.models[app_label, self.name_lower]
