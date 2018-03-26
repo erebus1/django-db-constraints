@@ -24,8 +24,8 @@ class AlterConstraints(ModelOptionOperation):
         if self.allow_migrate_model(schema_editor.connection.alias, to_model):
             from_model = from_state.apps.get_model(app_label, self.name)
 
-            to_constraints = getattr(to_model._meta, self.option_name, {}).keys()
-            from_constraints = getattr(from_model._meta, self.option_name, {}).keys()
+            to_constraints = set(getattr(to_model._meta, self.option_name, {}).keys())
+            from_constraints = set(getattr(from_model._meta, self.option_name, {}).keys())
 
             table_operations = tuple(
                 'DROP CONSTRAINT IF EXISTS {name}'.format(
